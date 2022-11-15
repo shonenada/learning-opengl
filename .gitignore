@@ -1,0 +1,8 @@
+.idea/
+cmake-build*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.cmake
+*.a
+opengl_from_scratch
