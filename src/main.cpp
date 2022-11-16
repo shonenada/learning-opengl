@@ -8,6 +8,7 @@ const int HEIGHT = 1080;
 const char* TITLE = "OpenGL";
 
 void frameBufferSizeCallback(GLFWwindow* window, int widht, int heighi);
+void handleInput(GLFWwindow* window);
 
 void errorCallback(int error, const char* description)
 {
@@ -41,6 +42,7 @@ int main() {
     }
 
     while(!glfwWindowShouldClose(window)) {
+        handleInput(window);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -49,7 +51,15 @@ int main() {
     return 0;
 }
 
-
 void frameBufferSizeCallback(GLFWwindow *window, int width, int height) {
     glViewport(0, 0, width, height);
+}
+
+void handleInput(GLFWwindow *window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    } else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
 }
