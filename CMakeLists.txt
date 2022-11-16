@@ -20,5 +20,6 @@ add_library(GLAD "${CMAKE_SOURCE_DIR}/src/glad.c")
 
 set(LIBS ${GLFW3_LIBRARY} X11 GL GLAD dl pthread)
 
-add_executable(opengl_from_scratch src/main.cpp)
+add_executable(ofs_window src/hello_window.cpp)
+add_executable(ofs_triangle src/hello_triangle.cpp)
 target_link_libraries(opengl_from_scratch ${LIBS})
