@@ -28,3 +28,12 @@ target_link_libraries(ofs_triangle ${LIBS})
 
 add_executable(ofs_rectangle src/rectangle.cpp)
 target_link_libraries(ofs_rectangle ${LIBS})
+
+add_executable(ofs_shader_normal src/shader_normal.cpp)
+target_link_libraries(ofs_shader_normal ${LIBS})
+
+add_executable(ofs_shader_uniform src/shader_uniform.cpp)
+target_link_libraries(ofs_shader_uniform ${LIBS})
+
+add_executable(ofs_shader_location src/shader_location.cpp)
+target_link_libraries(ofs_shader_location ${LIBS})
