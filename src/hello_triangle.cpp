@@ -8,7 +8,7 @@ const int HEIGHT = 1080;
 const char* TITLE = "Triangle";
 
 void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
-void handleInput(GLFWwindow* window);
+void handleInput(GLFWwindow* window, unsigned int shaderProgram, int VAO);
 
 void errorCallback(int error, const char* description) {
     std::cout << error << " " << description << std::endl;
@@ -159,14 +159,7 @@ int main() {
     glBindVertexArray(0);
 
     while(!glfwWindowShouldClose(window)) {
-        handleInput(window);
-
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        handleInput(window, shaderProgram, VAO);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -184,9 +177,16 @@ void frameBufferSizeCallback(GLFWwindow *window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
-void handleInput(GLFWwindow *window) {
+void handleInput(GLFWwindow *window, unsigned int shaderProgram, int VAO) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, true);
+    } else if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS) {
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glUseProgram(shaderProgram);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
     } else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
