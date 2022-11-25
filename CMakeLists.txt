@@ -37,3 +37,6 @@ target_link_libraries(ofs_shader_uniform ${LIBS})
 
 add_executable(ofs_shader_location src/shader_location.cpp)
 target_link_libraries(ofs_shader_location ${LIBS})
+
+add_executable(ofs_shader_class src/shader_class.cpp)
+target_link_libraries(ofs_shader_class ${LIBS})
