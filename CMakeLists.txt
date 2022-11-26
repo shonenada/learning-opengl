@@ -17,8 +17,9 @@ find_package(X11 REQUIRED)
 message(STATUS "Found X11 in ${X11_INCLUDE_DIR}")
 
 add_library(GLAD "${CMAKE_SOURCE_DIR}/src/glad.c")
+add_library(STB_IMAGE "${CMAKE_SOURCE_DIR}/src/stb_image.cpp")
 
-set(LIBS ${GLFW3_LIBRARY} X11 GL GLAD dl pthread)
+set(LIBS ${GLFW3_LIBRARY} X11 GL GLAD STB_IMAGE dl pthread)
 
 add_executable(ofs_window src/hello_window.cpp)
 target_link_libraries(ofs_window ${LIBS})
@@ -40,3 +41,6 @@ target_link_libraries(ofs_shader_location ${LIBS})
 
 add_executable(ofs_shader_class src/shader_class.cpp)
 target_link_libraries(ofs_shader_class ${LIBS})
+
+add_executable(ofs_texture src/texture.cpp)
+target_link_libraries(ofs_texture ${LIBS})
