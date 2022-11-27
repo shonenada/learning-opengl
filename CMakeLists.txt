@@ -50,3 +50,6 @@ target_link_libraries(ofs_texture ${LIBS})
 
 add_executable(ofs_transformation src/transformations.cpp)
 target_link_libraries(ofs_transformation ${LIBS})
+
+add_executable(ofs_3d src/start_3d.cpp)
+target_link_libraries(ofs_3d ${LIBS})
