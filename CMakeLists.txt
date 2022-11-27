@@ -21,6 +21,9 @@ add_library(STB_IMAGE "${CMAKE_SOURCE_DIR}/src/stb_image.cpp")
 
 set(LIBS ${GLFW3_LIBRARY} X11 GL GLAD STB_IMAGE dl pthread)
 
+add_executable(glm_demo src/glm_demo.cpp)
+target_link_libraries(glm_demo ${LIBS})
+
 add_executable(ofs_window src/hello_window.cpp)
 target_link_libraries(ofs_window ${LIBS})
 
@@ -44,3 +47,6 @@ target_link_libraries(ofs_shader_class ${LIBS})
 
 add_executable(ofs_texture src/texture.cpp)
 target_link_libraries(ofs_texture ${LIBS})
+
+add_executable(ofs_transformation src/transformations.cpp)
+target_link_libraries(ofs_transformation ${LIBS})
