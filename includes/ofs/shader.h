@@ -1,13 +1,17 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/glad.h>
-
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
 
+#include <glad/glad.h>
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
+#include <glm/gtc/type_ptr.hpp>
 
 unsigned int getVertexShader(const char* vertexShaderSource) {
     unsigned int vertexShader;
@@ -135,6 +139,10 @@ public:
 
     void set4Float(const std::string &name, float x, float y, float z, float w) const {
         glUniform4f(glGetUniformLocation(ID, name.c_str()), x, y, z, w);
+    }
+
+    void setMat4fv(const std::string &name, glm::mat4 trans) const {
+        glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(trans));
     }
 };
 
