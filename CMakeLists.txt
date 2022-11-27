@@ -53,3 +53,15 @@ target_link_libraries(ofs_transformation ${LIBS})
 
 add_executable(ofs_3d src/start_3d.cpp)
 target_link_libraries(ofs_3d ${LIBS})
+
+add_executable(ofs_camera src/camera.cpp)
+target_link_libraries(ofs_camera ${LIBS})
+
+add_executable(ofs_camera_movement src/camera_movement.cpp)
+target_link_libraries(ofs_camera_movement ${LIBS})
+
+add_executable(ofs_camera_movement_look_around src/camera_movement_look_around.cpp)
+target_link_libraries(ofs_camera_movement_look_around ${LIBS})
+
+add_executable(ofs_camera_movement_zoom src/camera_movement_zoom.cpp)
+target_link_libraries(ofs_camera_movement_zoom ${LIBS})
