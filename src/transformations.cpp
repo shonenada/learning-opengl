@@ -13,7 +13,7 @@
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
-const char* TITLE = "Triangle";
+const char* TITLE = "OpenGL - Transformation";
 
 void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 void handleInput(GLFWwindow* window, unsigned int shaderProgram, int VAO, int EBO);
@@ -220,7 +220,8 @@ int main() {
         shader.setInt("texture2", 1);
         glm::mat4 trans = glm::mat4(1.0f);
 //        trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 0.5f));
-        trans = glm::rotate(trans, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+//        trans = glm::rotate(trans, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+        trans = glm::rotate(trans, glm::radians(30.0f), glm::vec3(0.0f, 0.0f, 1.0f));
         shader.setMat4fv("transform", trans);
 
         glfwSwapBuffers(window);

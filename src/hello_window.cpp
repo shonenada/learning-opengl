@@ -5,7 +5,7 @@
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
-const char* TITLE = "OpenGL";
+const char* TITLE = "OpenGL - Hello World";
 
 void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 void handleInput(GLFWwindow* window);

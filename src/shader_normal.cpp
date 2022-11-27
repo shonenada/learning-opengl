@@ -5,7 +5,7 @@
 
 const int WIDTH = 1920;
 const int HEIGHT = 1080;
-const char* TITLE = "Triangle";
+const char* TITLE = "OpenGL - Shader";
 
 void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 void handleInput(GLFWwindow* window, unsigned int shaderProgram, int VAO, int EBO);
