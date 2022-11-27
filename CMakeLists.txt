@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
 set(CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -ldl")
 
+set(CMAKE_BUILD_TYPE Debug)
+
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 link_directories(${CMAKE_SOURCE_DIR}/libs)
 
@@ -65,3 +67,6 @@ target_link_libraries(ofs_camera_movement_look_around ${LIBS})
 
 add_executable(ofs_camera_movement_zoom src/camera_movement_zoom.cpp)
 target_link_libraries(ofs_camera_movement_zoom ${LIBS})
+
+add_executable(ofs_lighting src/lighting.cpp)
+target_link_libraries(ofs_lighting ${LIBS})

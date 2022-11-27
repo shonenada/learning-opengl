@@ -215,7 +215,7 @@ int main() {
         float timeValue = glfwGetTime();
         float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
         shader.use();
-        shader.set4Float("color", 0.0f, greenValue, 0.0f, 1.0f);
+        shader.setVec4("color", 0.0f, greenValue, 0.0f, 1.0f);
         shader.setInt("texture1", 0);
         shader.setInt("texture2", 1);
         glm::mat4 trans = glm::mat4(1.0f);
