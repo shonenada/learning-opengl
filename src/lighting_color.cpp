@@ -103,8 +103,8 @@ int main() {
             -0.5f,  0.5f, -0.5f,
     };
 
-    Shader lightShader("../shader/lighting/vertex.glsl", "../shader/lighting/fragment.glsl");
-    Shader lightCubeShader("../shader/lighting/light_vertex.glsl", "../shader/lighting/light_fragment.glsl");
+    Shader lightShader("../shader/lighting_color/vertex.glsl", "../shader/lighting_color/fragment.glsl");
+    Shader lightCubeShader("../shader/lighting_color/light_vertex.glsl", "../shader/lighting_color/light_fragment.glsl");
 
     unsigned int cubeVAO, VBO;
     glGenVertexArrays(1, &cubeVAO);

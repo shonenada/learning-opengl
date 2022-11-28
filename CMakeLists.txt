@@ -71,5 +71,8 @@ target_link_libraries(ofs_camera_movement_zoom ${LIBS})
 add_executable(ofs_camera_class src/camera_class.cpp)
 target_link_libraries(ofs_camera_class ${LIBS})
 
-add_executable(ofs_lighting src/lighting.cpp)
-target_link_libraries(ofs_lighting ${LIBS})
+add_executable(ofs_lighting_color src/lighting_color.cpp)
+target_link_libraries(ofs_lighting_color ${LIBS})
+
+add_executable(ofs_lighting_basic src/lighting_basic.cpp)
+target_link_libraries(ofs_lighting_basic ${LIBS})
