@@ -1,13 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb_image.h>
-#include <glm/vec3.hpp> // glm::vec3
-#include <glm/vec4.hpp> // glm::vec4
-#include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale, glm::perspective
-#include <glm/gtc/type_ptr.hpp>
 #include <iostream>
-#include <cmath>
 
 #include "ofs/shader.h"
 #include "ofs/camera.h"
@@ -21,14 +15,14 @@ void handleInput(GLFWwindow* window);
 void mouseCallback(GLFWwindow* window, double xPos, double yPos);
 void scrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 void updateUniformColor(int shaderProgram);
-glm::vec3 lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-float fov = 45.0f;
 float yaw = -90.0f;
 float pitch = 0.0f;
 Camera camera(cameraPos, cameraUp, yaw, pitch);
+
+glm::vec3 lightPos(0.5f, 0.0f, 2.0f);
 
 void errorCallback(int error, const char* description) {
     std::cout << error << " " << description << std::endl;
@@ -36,9 +30,9 @@ void errorCallback(int error, const char* description) {
 
 /*
  * Ambient Lighting: still some light somewhere in the world, even in dark
- * Diffuse Lighting: simulates the directional impact a light object has on an object.
+ * Diffuse Lighting: simulates the directional impact a light object has on an object. Diffuse lighting gives the object more brightness the closer its fragments are aligned to the light rays from a light source.
  * Specular Lighting: simulates the bright spot of a light that happen on shiny objects
- * Phong Lighting:
+ * Phong Lighting: combined
  */
 
 int main() {
@@ -63,12 +57,12 @@ int main() {
     glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
     glfwSetCursorPosCallback(window, mouseCallback);
     glfwSetScrollCallback(window, scrollCallback);
-//    glEnable(GL_DEPTH_TEST);
 
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to init GLAD" << std::endl;
         return 1;
     }
+    glEnable(GL_DEPTH_TEST);
 
     float vertices[] = {
             -0.5f, -0.5f, -0.5f,
@@ -126,7 +120,7 @@ int main() {
 
     glBindVertexArray(cubeVAO);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3* sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
 
     unsigned int lightCubeVAO;
@@ -134,7 +128,7 @@ int main() {
     glBindVertexArray(lightCubeVAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
-    glad_glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(0);
 
     while(!glfwWindowShouldClose(window)) {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -150,8 +144,7 @@ int main() {
         glm::mat4 view = camera.GetViewMatrix();
         lightShader.setMat4fv("view", view);
 
-        glm::mat4 projection;
-        projection = glm::perspective(glm::radians(camera.Zoom), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
         lightShader.setMat4fv("projection", projection);
 
         glm::mat4 model = glm::mat4(1.0f);
