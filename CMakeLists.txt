@@ -76,3 +76,6 @@ target_link_libraries(ofs_lighting_color ${LIBS})
 
 add_executable(ofs_lighting_basic src/lighting_basic.cpp)
 target_link_libraries(ofs_lighting_basic ${LIBS})
+
+add_executable(ofs_lighting_specular src/lighting_specular.cpp)
+target_link_libraries(ofs_lighting_specular ${LIBS})
