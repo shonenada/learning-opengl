@@ -16,13 +16,12 @@ void mouseCallback(GLFWwindow* window, double xPos, double yPos);
 void scrollCallback(GLFWwindow* window, double xOffset, double yOffset);
 void updateUniformColor(int shaderProgram);
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 float yaw = -90.0f;
 float pitch = 0.0f;
 Camera camera(cameraPos, cameraUp, yaw, pitch);
 
-glm::vec3 lightPos(0.5f, 0.0f, 2.0f);
+glm::vec3 lightPos(1.2f, 0.5f, 2.0f);
 
 void errorCallback(int error, const char* description) {
     std::cout << error << " " << description << std::endl;
@@ -122,7 +121,7 @@ int main() {
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) (3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     unsigned int lightCubeVAO;
@@ -220,6 +219,17 @@ void handleInput(GLFWwindow *window) {
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
+    float LightMovementSpeed = 1;
+    float velocity = LightMovementSpeed * deltaTime;
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+        lightPos.y += velocity;
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        lightPos.y -= velocity;
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+        lightPos.x -= velocity;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+        lightPos.x += velocity;
 }
 
 float lastX = WIDTH / 2.0;

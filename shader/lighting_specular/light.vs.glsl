@@ -11,7 +11,10 @@ uniform mat4 view;
 uniform mat4 projection;
 
 void main() {
-    gl_Position = projection * view * model * vec4(aPos, 1.0);
     FragPos = vec3(model * vec4(aPos, 1.0));
-    Normal = aNormal;
+    // In the vertex shader we can generate the normal matrix by using the inverse and transpose functions
+    // in the vertex shader that work on any matrix type
+    Normal = mat3(transpose(inverse(model))) * aNormal;
+
+    gl_Position = projection * view * vec4(FragPos, 1.0);
 }
