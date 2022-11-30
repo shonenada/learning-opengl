@@ -83,8 +83,8 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightCubeShader("../shader/diffusemap/cube.vs.glsl", "../shader/diffusemap/cube.fs.glsl");
-    Shader lightShader("../shader/diffusemap/light.vs.glsl", "../shader/diffusemap/light.fs.glsl");
+    Shader lightCubeShader("../shader/diffuse_map/cube.vs.glsl", "../shader/diffuse_map/cube.fs.glsl");
+    Shader lightShader("../shader/diffuse_map/light.vs.glsl", "../shader/diffuse_map/light.fs.glsl");
 
     stbi_set_flip_vertically_on_load(true);
 
