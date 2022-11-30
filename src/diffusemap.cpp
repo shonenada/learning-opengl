@@ -157,7 +157,7 @@ int main() {
     glGenVertexArrays(1, &lightCubeVAO);
     glBindVertexArray(lightCubeVAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
 
     lightShader.use();
@@ -183,14 +183,9 @@ int main() {
         lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
         lightShader.setVec3("light.position", lightPos.x, lightPos.y, lightPos.z);
 
-        glm::vec3 lightColor;
-        lightColor.x = sin(glfwGetTime() * 2.0f);
-        lightColor.y = sin(glfwGetTime() * 0.7f);
-        lightColor.z = sin(glfwGetTime() * 1.3f);
-
+        glm::vec3 lightColor = glm::vec3(1.0f);
         glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f);
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
-
         lightShader.setVec3("light.ambient", ambientColor.x, ambientColor.y, ambientColor.z);
         lightShader.setVec3("light.diffuse", diffuseColor.x, diffuseColor.y, diffuseColor.z);
 
