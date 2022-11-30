@@ -82,3 +82,6 @@ target_link_libraries(ofs_lighting_specular ${LIBS})
 
 add_executable(ofs_material src/material.cpp)
 target_link_libraries(ofs_material ${LIBS})
+
+add_executable(ofs_diffusemap src/diffusemap.cpp)
+target_link_libraries(ofs_diffusemap ${LIBS})

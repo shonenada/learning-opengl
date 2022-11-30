@@ -20,11 +20,11 @@ unsigned int getVertexShader(const char* vertexShaderSource) {
     glCompileShader(vertexShader);
 
     int success;
-    char infoLog[512];
+    char infoLog[1024];
     glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
     if (!success) {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        glGetShaderInfoLog(vertexShader, 1024, NULL, infoLog);
         std::cout << "Failed to compile vertex shader: " << infoLog << std::endl;
         return -1;
     }
@@ -39,11 +39,11 @@ unsigned int getFragmentShader(const char* fragmentShaderSource) {
     glCompileShader(fragmentShader);
 
     int success;
-    char infoLog[512];
+    char infoLog[1024];
     glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 
     if (!success) {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        glGetShaderInfoLog(fragmentShader, 1024, NULL, infoLog);
         std::cout << "Failed to compile fragment shader: " << infoLog << std::endl;
         return -1;
     }
@@ -60,11 +60,11 @@ unsigned int createShaderProgram(unsigned int vertexShader, unsigned int fragmen
     glLinkProgram(shaderProgram);
 
     int success;
-    char infoLog[512];
+    char infoLog[1024];
 
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetProgramInfoLog(shaderProgram, 1024, NULL, infoLog);
         std::cout << "Failed to link shader program: " << infoLog << std::endl;
         return -1;
     }
