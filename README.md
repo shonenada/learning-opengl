@@ -9,4 +9,5 @@
 
 ### Install GLAD
 
-- https://glad.dav1d.de/
+- Download from https://glad.dav1d.de/
+- or `sudo cp -r thirdparties/includes/* /usr/include`
