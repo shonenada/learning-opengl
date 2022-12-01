@@ -89,8 +89,8 @@ target_link_libraries(ofs_diffuse_map ${LIBS})
 add_executable(ofs_specular_map src/specular_map.cpp)
 target_link_libraries(ofs_specular_map ${LIBS})
 
-add_executable(ofs_light_casters src/light_casters.cpp)
-target_link_libraries(ofs_light_casters ${LIBS})
+add_executable(ofs_light_casters_directional src/light_casters_directional.cpp)
+target_link_libraries(ofs_light_casters_directional ${LIBS})
 
 add_executable(ofs_point_light src/point_light.cpp)
 target_link_libraries(ofs_point_light ${LIBS})

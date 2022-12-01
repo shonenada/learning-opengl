@@ -83,8 +83,8 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightCubeShader("../shader/light_casters/cube.vs.glsl", "../shader/light_casters/cube.fs.glsl");
-    Shader lightShader("../shader/light_casters/light.vs.glsl", "../shader/light_casters/light.fs.glsl");
+    Shader lightCubeShader("../shader/light_casters_directional/cube.vs.glsl", "../shader/light_casters_directional/cube.fs.glsl");
+    Shader lightShader("../shader/light_casters_directional/light.vs.glsl", "../shader/light_casters_directional/light.fs.glsl");
 
     stbi_set_flip_vertically_on_load(true);
 
