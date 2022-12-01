@@ -98,7 +98,7 @@ public:
 
             vertexCode = vShaderStream.str();
             fragmentCode = fShaderStream.str();
-        } catch (std::ifstream::failure e) {
+        } catch (std::ifstream::failure& e) {
             std::cout << "Failed to init shader, FILE NOT SUCCESSFULLY READ" << std::endl;
         }
         const char* vShaderCode = vertexCode.c_str();
@@ -139,6 +139,10 @@ public:
 
     void setVec3(const std::string &name, float x, float y, float z) const {
         glUniform3f(glGetUniformLocation(ID, name.c_str()), x, y, z);
+    }
+
+    void setVec3(const std::string &name, glm::vec3 vec) const {
+        glUniform3f(glGetUniformLocation(ID, name.c_str()), vec.x, vec.y, vec.z);
     }
 
     void setVec4(const std::string &name, float x, float y, float z, float w) const {

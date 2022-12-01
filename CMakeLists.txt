@@ -94,3 +94,6 @@ target_link_libraries(ofs_light_casters_directional ${LIBS})
 
 add_executable(ofs_point_light src/point_light.cpp)
 target_link_libraries(ofs_point_light ${LIBS})
+
+add_executable(ofs_spotlight src/light_casters_spotlight.cpp)
+target_link_libraries(ofs_spotlight ${LIBS})
