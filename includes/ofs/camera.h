@@ -10,7 +10,9 @@ enum Camera_Movement {
     FORWARD,
     BACKWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 };
 
 const float YAW = -90.0f;
@@ -33,7 +35,6 @@ public:
     float MovementSpeed;
     float MouseSensitivity;
     float Zoom;
-
 
     Camera(glm::vec3 position = glm::vec3(0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) : Front(glm::vec3(0.0f, 0.0f, -1.0f)), MovementSpeed(SPEED), MouseSensitivity(SENSITIVITY), Zoom(ZOOM) {
         Position = position;
@@ -65,6 +66,10 @@ public:
             Position -= Right * velocity;
         } else if (direction == RIGHT) {
             Position += Right * velocity;
+        } else if (direction == UP) {
+            Position += Up * velocity;
+        } else if (direction == DOWN) {
+            Position -= Up * velocity;
         }
     }
 

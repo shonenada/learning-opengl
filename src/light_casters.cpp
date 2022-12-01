@@ -83,8 +83,8 @@ int main() {
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightCubeShader("../shader/specular_map/cube.vs.glsl", "../shader/specular_map/cube.fs.glsl");
-    Shader lightShader("../shader/specular_map/light.vs.glsl", "../shader/specular_map/light.fs.glsl");
+    Shader lightCubeShader("../shader/light_casters/cube.vs.glsl", "../shader/light_casters/cube.fs.glsl");
+    Shader lightShader("../shader/light_casters/light.vs.glsl", "../shader/light_casters/light.fs.glsl");
 
     stbi_set_flip_vertically_on_load(true);
 
@@ -205,6 +205,7 @@ int main() {
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
         lightShader.setVec3("light.ambient", ambientColor.x, ambientColor.y, ambientColor.z);
         lightShader.setVec3("light.diffuse", diffuseColor.x, diffuseColor.y, diffuseColor.z);
+        lightShader.setVec3("light.direction", -0.2, -1.0f, -0.3f);
 
         // V[clip] = M[projection] * M[view] * M[model] * V[local]
         glm::mat4 view = camera.GetViewMatrix();
@@ -276,6 +277,10 @@ void handleInput(GLFWwindow *window) {
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        camera.ProcessKeyboard(UP, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+        camera.ProcessKeyboard(DOWN, deltaTime);
 
     float LightMovementSpeed = 1;
     float velocity = LightMovementSpeed * deltaTime;
