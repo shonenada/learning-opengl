@@ -97,3 +97,6 @@ target_link_libraries(ofs_point_light ${LIBS})
 
 add_executable(ofs_spotlight src/light_casters_spotlight.cpp)
 target_link_libraries(ofs_spotlight ${LIBS})
+
+add_executable(ofs_spotlight_softedges src/light_casters_spotlight_softedges.cpp)
+target_link_libraries(ofs_spotlight_softedges ${LIBS})
