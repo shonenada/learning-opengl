@@ -119,7 +119,6 @@ int main() {
     lightShader.use();
 //    lightShader.setInt("material.diffuse", 0); // cause segmentation fault
     lightShader.setInt("diffuseTexture", 0);
-
     lightShader.setInt("specularTexture", 1);
 
     glm::vec3 cubePositions[] = {
@@ -169,8 +168,6 @@ int main() {
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
         lightShader.setMat4fv("projection", projection);
 
-        glm::mat4 model = glm::mat4(1.0f);
-        lightShader.setMat4fv("model", model);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);

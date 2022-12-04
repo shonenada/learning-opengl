@@ -174,9 +174,9 @@ int main() {
         glm::mat4 model = glm::mat4(1.0f);
         lightShader.setMat4fv("model", model);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        glBindTexture(GL_TEXTURE_2D, 0);
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, specularMap);
+        glBindTexture(GL_TEXTURE_2D, 1);
 
         glBindVertexArray(cubeVAO);
 //        glDrawArrays(GL_TRIANGLES, 0, 36);
