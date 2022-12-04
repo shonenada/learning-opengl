@@ -23,80 +23,36 @@ add_library(STB_IMAGE "${CMAKE_SOURCE_DIR}/src/stb_image.cpp")
 
 set(LIBS ${GLFW3_LIBRARY} X11 GL GLAD STB_IMAGE dl pthread)
 
+function(add_project name)
+    add_executable(ofs_${name} src/${name}.cpp)
+    target_link_libraries(ofs_${name} ${LIBS})
+endfunction()
+
 add_executable(glm_demo src/glm_demo.cpp)
 target_link_libraries(glm_demo ${LIBS})
 
-add_executable(ofs_window src/hello_window.cpp)
-target_link_libraries(ofs_window ${LIBS})
-
-add_executable(ofs_triangle src/triangle.cpp)
-target_link_libraries(ofs_triangle ${LIBS})
-
-add_executable(ofs_rectangle src/rectangle.cpp)
-target_link_libraries(ofs_rectangle ${LIBS})
-
-add_executable(ofs_shader_normal src/shader_normal.cpp)
-target_link_libraries(ofs_shader_normal ${LIBS})
-
-add_executable(ofs_shader_uniform src/shader_uniform.cpp)
-target_link_libraries(ofs_shader_uniform ${LIBS})
-
-add_executable(ofs_shader_location src/shader_location.cpp)
-target_link_libraries(ofs_shader_location ${LIBS})
-
-add_executable(ofs_shader_class src/shader_class.cpp)
-target_link_libraries(ofs_shader_class ${LIBS})
-
-add_executable(ofs_texture src/texture.cpp)
-target_link_libraries(ofs_texture ${LIBS})
-
-add_executable(ofs_transformation src/transformations.cpp)
-target_link_libraries(ofs_transformation ${LIBS})
-
-add_executable(ofs_3d src/start_3d.cpp)
-target_link_libraries(ofs_3d ${LIBS})
-
-add_executable(ofs_camera src/camera.cpp)
-target_link_libraries(ofs_camera ${LIBS})
-
-add_executable(ofs_camera_movement src/camera_movement.cpp)
-target_link_libraries(ofs_camera_movement ${LIBS})
-
-add_executable(ofs_camera_movement_look_around src/camera_movement_look_around.cpp)
-target_link_libraries(ofs_camera_movement_look_around ${LIBS})
-
-add_executable(ofs_camera_movement_zoom src/camera_movement_zoom.cpp)
-target_link_libraries(ofs_camera_movement_zoom ${LIBS})
-
-add_executable(ofs_camera_class src/camera_class.cpp)
-target_link_libraries(ofs_camera_class ${LIBS})
-
-add_executable(ofs_lighting_color src/lighting_color.cpp)
-target_link_libraries(ofs_lighting_color ${LIBS})
-
-add_executable(ofs_lighting_basic src/lighting_basic.cpp)
-target_link_libraries(ofs_lighting_basic ${LIBS})
-
-add_executable(ofs_lighting_specular src/lighting_specular.cpp)
-target_link_libraries(ofs_lighting_specular ${LIBS})
-
-add_executable(ofs_material src/material.cpp)
-target_link_libraries(ofs_material ${LIBS})
-
-add_executable(ofs_diffuse_map src/diffuse_map.cpp)
-target_link_libraries(ofs_diffuse_map ${LIBS})
-
-add_executable(ofs_specular_map src/specular_map.cpp)
-target_link_libraries(ofs_specular_map ${LIBS})
-
-add_executable(ofs_light_casters_directional src/light_casters_directional.cpp)
-target_link_libraries(ofs_light_casters_directional ${LIBS})
-
-add_executable(ofs_point_light src/point_light.cpp)
-target_link_libraries(ofs_point_light ${LIBS})
-
-add_executable(ofs_spotlight src/light_casters_spotlight.cpp)
-target_link_libraries(ofs_spotlight ${LIBS})
-
-add_executable(ofs_spotlight_softedges src/light_casters_spotlight_softedges.cpp)
-target_link_libraries(ofs_spotlight_softedges ${LIBS})
+add_project(hello_window)
+add_project(triangle)
+add_project(rectangle)
+add_project(shader_normal)
+add_project(shader_uniform)
+add_project(shader_location)
+add_project(shader_class)
+add_project(texture)
+add_project(transformations)
+add_project(start_3d)
+add_project(camera)
+add_project(camera_movement)
+add_project(camera_movement_look_around)
+add_project(camera_movement_zoom)
+add_project(camera_class)
+add_project(lighting_color)
+add_project(lighting_basic)
+add_project(lighting_specular)
+add_project(material)
+add_project(diffuse_map)
+add_project(specular_map)
+add_project(lighting_casters_directional)
+add_project(lighting_casters_point)
+add_project(lighting_casters_spotlight)
+add_project(lighting_casters_spotlight_softedges)

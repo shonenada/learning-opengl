@@ -89,7 +89,7 @@ int main() {
     stbi_set_flip_vertically_on_load(true);
 
     unsigned int diffuseMap = loadTexture("../resources/wood_container.png", GL_RGBA);
-    unsigned int specularMap = loadTexture("../resources/wood_container.png", GL_RGBA);
+    unsigned int specularMap = loadTexture("../resources/wood_container_specular_map.png", GL_RGBA);
 
     float vertices[] = {
             // positions          // normals           // texture coords

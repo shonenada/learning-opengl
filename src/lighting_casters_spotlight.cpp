@@ -27,7 +27,6 @@ int main() {
         glfwTerminate();
     }
 
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
     glfwSetCursorPosCallback(window, mouseCallback);
@@ -45,8 +44,8 @@ int main() {
 
     stbi_set_flip_vertically_on_load(true);
 
-    unsigned int diffuseMap = loadTexture("../resources/wood_container.png", GL_RGBA);
-    unsigned int specularMap = loadTexture("../resources/wood_container.png", GL_RGBA);
+    unsigned int diffuseMap = loadTexture("../resources/wood_container.png");
+    unsigned int specularMap = loadTexture("../resources/wood_container_specular_map.png");
 
     float vertices[] = {
             // positions          // normals           // texture coords
@@ -137,17 +136,17 @@ int main() {
     };
 
     while(!glfwWindowShouldClose(window)) {
-        glClearColor(0.0f, 0.1f, 0.1f, 1.0f);
+        glClearColor(0.01f, 0.01f, 0.01f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         handleInput(window);
 
         lightShader.use();
         lightShader.setVec3("viewPos", camera.Position);
-        lightShader.setFloat("material.shininess", 16.0f);
+        lightShader.setFloat("material.shininess", 8.0f);
 
         lightShader.setVec3("light.ambient", 0.01f, 0.01f, 0.01f);
-        lightShader.setVec3("light.diffuse", 0.8f, 0.8f, 0.8f);
+        lightShader.setVec3("light.diffuse", 0.4f, 0.4f, 0.4f);
         lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
         lightShader.setFloat("light.constant", 1.0f);
         lightShader.setFloat("light.linear", 0.09f);
@@ -155,7 +154,7 @@ int main() {
         lightShader.setVec3("light.position", camera.Position);
         lightShader.setVec3("light.direction", camera.Front);
         // lightShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
-         lightShader.setFloat("light.cutOff", glm::cos(glm::radians(5.0f)));
+         lightShader.setFloat("light.cutOff", glm::cos(glm::radians(0.1f)));
 
 //        glm::vec3 lightColor = glm::vec3(1.0f);
 //        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f);

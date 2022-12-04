@@ -29,7 +29,7 @@ uniform Light light;
 void main() {
     // ambient, the reflect color of surface under ambient lighting
     // vec3 ambient = light.ambient * vec3(texture(material.diffuse, TexCoords));   // !!! THIS CAUSE SEGMENTATION FAULT
-    vec3 ambient = light.ambient * vec3(texture(diffuseTexture, TexCoords));
+    vec3 ambient = light.ambient * (texture(diffuseTexture, TexCoords)).rgb;
 
     vec3 norm = normalize(Normal);
     vec3 lightDir = normalize(light.position - FragPos);
@@ -37,7 +37,7 @@ void main() {
     // diffuse, the color of surface under diffuse lighting, set to the desired surface's color
 
     // vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TexCoords));   // !!! THIS CAUSE SEGMENTATION FAULt
-    vec3 diffuse = light.diffuse * diff * vec3(texture(diffuseTexture, TexCoords));
+    vec3 diffuse = light.diffuse * diff * (texture(diffuseTexture, TexCoords)).rgb;
 
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
