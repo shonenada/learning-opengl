@@ -120,12 +120,8 @@ int main() {
     lightShader.use();
 //    lightShader.setInt("material.diffuse", 0); // cause segmentation fault
     lightShader.setInt("diffuseTexture", 0);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, diffuseMap);
 
     lightShader.setInt("specularTexture", 1);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, specularMap);
 
     glm::vec3 cubePositions[] = {
             glm::vec3( 0.0f,  0.0f,  0.0f),
@@ -147,21 +143,21 @@ int main() {
         handleInput(window);
 
         lightShader.use();
-        lightShader.setVec3("lightColor", 1.0f, 1.0f, 0.0f);
-        lightShader.setVec3("viewPos", camera.Position.x, camera.Position.y, camera.Position.z);
+        lightShader.setVec3("viewPos", camera.Position);
 //        lightShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-        lightShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightShader.setVec3("material.specular", glm::vec3(0.5f));
         lightShader.setFloat("material.shininess", 32.0f);
 //        lightShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
 //        lightShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
 //        lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-        lightShader.setVec3("light.position", lightPos.x, lightPos.y, lightPos.z);
+        lightShader.setVec3("light.position", lightPos);
 
         glm::vec3 lightColor = glm::vec3(1.0f);
-        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f);
+        glm::vec3 diffuseColor = lightColor * glm::vec3(0.8f);
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
-        lightShader.setVec3("light.ambient", ambientColor.x, ambientColor.y, ambientColor.z);
-        lightShader.setVec3("light.diffuse", diffuseColor.x, diffuseColor.y, diffuseColor.z);
+        lightShader.setVec3("lightColor", lightColor);
+        lightShader.setVec3("light.ambient", ambientColor);
+        lightShader.setVec3("light.diffuse", diffuseColor);
         lightShader.setVec3("light.direction", -0.2, -1.0f, -0.3f);
 
         // V[clip] = M[projection] * M[view] * M[model] * V[local]
@@ -173,6 +169,11 @@ int main() {
 
         glm::mat4 model = glm::mat4(1.0f);
         lightShader.setMat4fv("model", model);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, diffuseMap);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
 
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);

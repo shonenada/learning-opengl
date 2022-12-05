@@ -45,7 +45,8 @@ int main() {
     stbi_set_flip_vertically_on_load(true);
 
     unsigned int diffuseMap = loadTexture("../resources/wood_container.png");
-    unsigned int specularMap = loadTexture("../resources/wood_container_specular_map.png");
+    // unsigned int specularMap = loadTexture("../resources/wood_container_specular_map.png");
+    unsigned int specularMap = loadTexture("../resources/wood_container.png");
 
     float vertices[] = {
             // positions          // normals           // texture coords
@@ -142,18 +143,18 @@ int main() {
 
         lightShader.use();
         lightShader.setVec3("viewPos", camera.Position);
-        lightShader.setFloat("material.shininess", 8.0f);
+        lightShader.setFloat("material.shininess", 32.0f);
 
-        lightShader.setVec3("light.ambient", 0.01f, 0.01f, 0.01f);
-        lightShader.setVec3("light.diffuse", 0.4f, 0.4f, 0.4f);
+        lightShader.setVec3("light.ambient", 0.1f, 0.1f, 0.1f);
+        lightShader.setVec3("light.diffuse", 0.8f, 0.8f, 0.8f);
         lightShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
         lightShader.setFloat("light.constant", 1.0f);
         lightShader.setFloat("light.linear", 0.09f);
         lightShader.setFloat("light.quadratic", 0.032f);
         lightShader.setVec3("light.position", camera.Position);
         lightShader.setVec3("light.direction", camera.Front);
-        // lightShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
-         lightShader.setFloat("light.cutOff", glm::cos(glm::radians(0.1f)));
+        lightShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
+//         lightShader.setFloat("light.cutOff", glm::cos(glm::radians(0.1f)));
 
 //        glm::vec3 lightColor = glm::vec3(1.0f);
 //        glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f);
@@ -167,6 +168,8 @@ int main() {
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
         lightShader.setMat4fv("projection", projection);
+        glm::mat4 model = glm::mat4(1.0f);
+        lightShader.setMat4fv("model", model);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
