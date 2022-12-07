@@ -19,9 +19,9 @@ if(WIN32)
 
     add_library(GLAD "${CMAKE_SOURCE_DIR}/src/glad.c")
     add_library(STB_IMAGE "${CMAKE_SOURCE_DIR}/src/stb_image.cpp")
-    set(LIBS ${PROJECT_SOURCE_DIR}/libs/glfw3.dll GLAD STB_IMAGE)
+    set(LIBS ${CMAKE_SOURCE_DIR}/libs/glfw3.dll GLAD STB_IMAGE)
 
-    file(COPY ${PROJECT_SOURCE_DIR}/libs/glfw3.dll DESTINATION ${CMAKE_BUILD_RPATH}/)
+    file(COPY ${CMAKE_SOURCE_DIR}/libs/glfw3.dll DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
 endif(WIN32)
 
 if(UNIX)
